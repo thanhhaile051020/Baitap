@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery/pages/home/food/popular_food_detail.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/app_column.dart';
@@ -96,74 +97,82 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             shrinkWrap: true,
             itemCount: 10,
             itemBuilder: (context, index) {
-              return Container(
-                margin: EdgeInsets.only(
-                    left: Dimensions.widthDynamic(20),
-                    right: Dimensions.widthDynamic(20),
-                    bottom: Dimensions.widthDynamic(10)),
-                child: Row(children: [
-                  //img section
-                  Container(
-                    width: Dimensions.widthDynamic(120),
-                    height: Dimensions.widthDynamic(120),
-                    decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.circular(Dimensions.roundDynamic(20)),
-                        color: Colors.white38,
-                        image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage("assets/image/food0.png"))),
-                  ),
-                  Expanded(
-                    child: Container(
-                      height: Dimensions.heightDynamic(100),
+              return InkWell(
+                onTap: (() => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PopularFoodDetail(),
+                    ))),
+                child: Container(
+                  margin: EdgeInsets.only(
+                      left: Dimensions.widthDynamic(20),
+                      right: Dimensions.widthDynamic(20),
+                      bottom: Dimensions.widthDynamic(10)),
+                  child: Row(children: [
+                    //img section
+                    Container(
+                      width: Dimensions.widthDynamic(120),
+                      height: Dimensions.widthDynamic(120),
                       decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                            topRight:
-                                Radius.circular(Dimensions.roundDynamic(20)),
-                            bottomRight:
-                                Radius.circular(Dimensions.roundDynamic(20)),
-                          )),
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            left: Dimensions.widthDynamic(10),
-                            right: Dimensions.widthDynamic(10)),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              BigText(text: "Nutritious fruit meal in Vietnam"),
-                              SizedBox(
-                                height: Dimensions.heightDynamic(10),
-                              ),
-                              SmallText(text: "With chinese characteristics"),
-                              SizedBox(
-                                height: Dimensions.heightDynamic(10),
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  IconAndTextWidget(
-                                      icon: Icons.circle_sharp,
-                                      text: "Normal",
-                                      iconColor: AppColors.iconColor1),
-                                  IconAndTextWidget(
-                                      icon: Icons.location_on,
-                                      text: "1.7km",
-                                      iconColor: AppColors.mainColor),
-                                  IconAndTextWidget(
-                                      icon: Icons.access_time_rounded,
-                                      text: "32min",
-                                      iconColor: AppColors.iconColor2)
-                                ],
-                              )
-                            ]),
-                      ),
+                          borderRadius: BorderRadius.circular(
+                              Dimensions.roundDynamic(20)),
+                          color: Colors.white38,
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage("assets/image/food0.png"))),
                     ),
-                  ) //text container
-                ]),
+                    Expanded(
+                      child: Container(
+                        height: Dimensions.heightDynamic(100),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.only(
+                              topRight:
+                                  Radius.circular(Dimensions.roundDynamic(20)),
+                              bottomRight:
+                                  Radius.circular(Dimensions.roundDynamic(20)),
+                            )),
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              left: Dimensions.widthDynamic(10),
+                              right: Dimensions.widthDynamic(10)),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                BigText(
+                                    text: "Nutritious fruit meal in Vietnam"),
+                                SizedBox(
+                                  height: Dimensions.heightDynamic(10),
+                                ),
+                                SmallText(text: "With chinese characteristics"),
+                                SizedBox(
+                                  height: Dimensions.heightDynamic(10),
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    IconAndTextWidget(
+                                        icon: Icons.circle_sharp,
+                                        text: "Normal",
+                                        iconColor: AppColors.iconColor1),
+                                    IconAndTextWidget(
+                                        icon: Icons.location_on,
+                                        text: "1.7km",
+                                        iconColor: AppColors.mainColor),
+                                    IconAndTextWidget(
+                                        icon: Icons.access_time_rounded,
+                                        text: "32min",
+                                        iconColor: AppColors.iconColor2)
+                                  ],
+                                )
+                              ]),
+                        ),
+                      ),
+                    ) //text container
+                  ]),
+                ),
               );
             }),
       ],
@@ -190,45 +199,52 @@ class _FoodPageBodyState extends State<FoodPageBody> {
 
     return Transform(
       transform: matrix,
-      child: Stack(children: [
-        Container(
-          height: Dimensions.pageViewContainer,
-          margin: EdgeInsets.only(
-              left: Dimensions.width10, right: Dimensions.width10),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(Dimensions.radius30),
-              color: index.isEven ? Color(0xFF69c5df) : Color(0xFF9294cc),
-              image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage("assets/image/food0.png"))),
-        ),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Container(
-              height: Dimensions.pageViewTextContainer,
-              margin: EdgeInsets.only(
-                  left: Dimensions.width30,
-                  right: Dimensions.width30,
-                  bottom: Dimensions.height30),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Dimensions.radius20),
-                boxShadow: [
-                  BoxShadow(
-                      color: Color(0xFFe8e8e8),
-                      blurRadius: 5.0,
-                      offset: Offset(0, 5)),
-                  BoxShadow(color: Colors.white, offset: Offset(-5, 0)),
-                  BoxShadow(color: Colors.white, offset: Offset(5, 0))
-                ],
-                color: Colors.white,
-              ),
-              child: Container(
-                padding: EdgeInsets.only(
-                    top: Dimensions.height15, left: 15, right: 15),
-                child: AppColumn(text:"Vietnam side"),
-              )),
-        )
-      ]),
+      child: InkWell(
+        onTap: (() => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PopularFoodDetail(),
+            ))),
+        child: Stack(children: [
+          Container(
+            height: Dimensions.pageViewContainer,
+            margin: EdgeInsets.only(
+                left: Dimensions.width10, right: Dimensions.width10),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(Dimensions.radius30),
+                color: index.isEven ? Color(0xFF69c5df) : Color(0xFF9294cc),
+                image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage("assets/image/food0.png"))),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+                height: Dimensions.pageViewTextContainer,
+                margin: EdgeInsets.only(
+                    left: Dimensions.width30,
+                    right: Dimensions.width30,
+                    bottom: Dimensions.height30),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(Dimensions.radius20),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Color(0xFFe8e8e8),
+                        blurRadius: 5.0,
+                        offset: Offset(0, 5)),
+                    BoxShadow(color: Colors.white, offset: Offset(-5, 0)),
+                    BoxShadow(color: Colors.white, offset: Offset(5, 0))
+                  ],
+                  color: Colors.white,
+                ),
+                child: Container(
+                  padding: EdgeInsets.only(
+                      top: Dimensions.height15, left: 15, right: 15),
+                  child: AppColumn(text: "Vietnam side"),
+                )),
+          )
+        ]),
+      ),
     );
   }
 }
